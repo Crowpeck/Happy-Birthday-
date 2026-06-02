@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Special Gift For You</title>
+  <meta name="description" content="Something beautiful awaits...">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading" class="screen">
+    <div class="loading-heart"></div>
+  </div>
+
+  <!-- Phase 1: Countdown -->
+  <div id="countdown-phase" class="screen hidden">
+    <div class="floating-hearts" id="floating-hearts"></div>
+    <div class="content-wrapper">
+      <div class="heart-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </div>
+      <h1 class="title">Something Special Awaits</h1>
+      <p class="subtitle">Hold tight, beautiful...</p>
+      
+      <div class="countdown-grid">
+        <div class="countdown-item">
+          <span class="countdown-value" id="days">00</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-value" id="hours">00</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-value" id="minutes">00</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-value" id="seconds">00</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+      
+      <p class="teaser">Something special is waiting for you...</p>
+    </div>
+  </div>
+
+  <!-- Phase 2: Passcode -->
+  <div id="passcode-phase" class="screen hidden">
+    <div class="content-wrapper">
+      <div class="lock-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <h1 class="title">A Gift For You</h1>
+      <p class="subtitle">Enter the passcode to unlock your surprise</p>
+      
+      <div class="passcode-form">
+        <input 
+          type="text" 
+          id="passcode-input" 
+          class="passcode-input" 
+          placeholder="Enter 8-digit code"
+          maxlength="8"
+          inputmode="numeric"
+        >
+        <p class="hint">Hint: Enter the special date (MMDDYYYY)</p>
+        <p class="error-message hidden" id="error-message">
+          Not quite... Try again, love.
+          <br>
+          <span class="hint-text">The day the world got a little brighter.</span>
+        </p>
+        <button id="unlock-btn" class="unlock-btn">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 9.9-1"/>
+          </svg>
+          Unlock
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3: Envelope -->
+  <div id="envelope-phase" class="screen hidden">
+    <div class="content-wrapper">
+      <div id="envelope-container" class="envelope-container">
+        <p class="tap-hint" id="tap-hint">Tap to open</p>
+        
+        <div class="envelope" id="envelope">
+          <div class="envelope-flap"></div>
+          <div class="envelope-body">
+            <div class="heart-seal">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="letter hidden" id="letter">
+        <div class="letter-content">
+          <div class="letter-heart">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+          </div>
+          
+          <p class="letter-greeting">My Princess,</p>
+          
+          <p class="letter-body">
+            Words could never fully capture how much you mean to me, but I'll try anyway...
+          </p>
+          
+          <p class="letter-body">
+            From the very first moment I met you, I knew there was something extraordinary about you. Your smile lights up every room, your laugh is the most beautiful melody and your heart is the kindest I've ever known.
+          </p>
+          
+          <p class="letter-body">
+            Every day with you feels like a gift. You make the ordinary extraordinary and you turn simple moments into cherished memories. I fall more in love with you with each passing day.
+          </p>
+          
+          <p class="letter-body">
+            Thank you for being you—for your patience, your love, your unwavering support and for choosing to share your life with me. You are my person, my best friend and my greatest adventure.
+          </p>
+          
+          <p class="letter-closing">Forever &amp; Always,</p>
+          <p class="letter-signature">Your Love</p>
+        </div>
+        
+        <button id="continue-btn" class="continue-btn">
+          Continue
+          <svg class="btn-icon-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 4: Graduation Countdown -->
+  <div id="graduation-phase" class="screen hidden">
+    <div class="sparkles" id="sparkles"></div>
+    <div class="content-wrapper">
+      <!-- Countdown Section (shown first, before graduation date) -->
+      <div id="grad-countdown-section">
+        <div class="grad-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/>
+          </svg>
+        </div>
+        <h1 class="title">The Big Day Approaches</h1>
+        <p class="subtitle">Counting down to your graduation ceremony</p>
+        
+        <div class="countdown-grid graduation-countdown">
+          <div class="countdown-item">
+            <span class="countdown-value" id="grad-days">00</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value" id="grad-hours">00</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value" id="grad-minutes">00</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value" id="grad-seconds">00</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+        
+        <div class="grad-date">
+          <svg class="calendar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          <span>June 4, 2026 at 11:00 PM</span>
+        </div>
+      </div>
+      
+      <!-- Flower with envelope (shown AFTER countdown ends) -->
+      <div id="flower-section" class="hidden">
+        <div class="grad-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/>
+          </svg>
+        </div>
+        <h1 class="title">Congratulations, Graduate!</h1>
+        <p class="subtitle">You did it! Here&apos;s a special surprise for you</p>
+        
+        <p class="flower-tap-hint" id="flower-tap-hint">Tap the flower to reveal a surprise</p>
+        
+        <div class="flower-container" id="flower-container">
+          <div class="flower" id="flower">
+            <div class="petal petal-1"></div>
+            <div class="petal petal-2"></div>
+            <div class="petal petal-3"></div>
+            <div class="petal petal-4"></div>
+            <div class="petal petal-5"></div>
+            <div class="petal petal-6"></div>
+            <div class="petal petal-7"></div>
+            <div class="petal petal-8"></div>
+            <div class="flower-center">
+              <svg class="flower-center-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </div>
+            <div class="flower-envelope">
+              <div class="mini-envelope-flap"></div>
+              <div class="mini-envelope-body">
+                <div class="mini-heart-seal">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Graduation Letter (hidden initially) -->
+      <div class="grad-letter hidden" id="grad-letter">
+        <div class="letter-content">
+          <div class="letter-heart">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+          </div>
+          
+          <p class="letter-greeting">My Beautiful Graduate,</p>
+          
+          <p class="letter-body">
+            Today marks the beginning of a new chapter in your incredible journey and I could not be more proud of the amazing person you have become.
+          </p>
+          
+          <p class="letter-body">
+            Every late night of studying, every challenge you overcame, every moment of doubt you pushed through—it has all led to this beautiful moment. You did it and you did it with grace, determination and that radiant spirit that I love so much.
+          </p>
+          
+          <p class="letter-body">
+            As you walk across that stage, know that my heart is bursting with pride. You have worked so hard for this and you deserve every bit of this celebration. The world is lucky to have someone as talented, kind and brilliant as you.
+          </p>
+          
+          <p class="letter-body">
+            This is just the beginning, My Love. I cannot wait to see all the incredible things you will accomplish. I will be right here, cheering you on every step of the way.
+          </p>
+          
+          <p class="letter-closing">With endless pride and love,</p>
+          <p class="letter-signature">Forever Yours</p>
+        </div>
+   
+        <button id="back-to-countdown-btn" class="back-btn">
+          <svg class="btn-icon-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Back to Countdown
+        </button>
+        //
+        <button id="continue-to-monthsary-btn" class="continue-btn" style="margin-left: 1rem;">
+          Continue
+          <svg class="btn-icon-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  Phase 5: Monthsary Countdown
+  <div id="monthsary-countdown-phase" class="screen hidden">
+    <div class="floating-hearts" id="monthsary-hearts"></div>
+    <div class="content-wrapper">
+      <div class="heart-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </div>
+      <h1 class="title">Our Special Day is Coming</h1>
+      <p class="subtitle">Counting down to our monthsary celebration</p>
+      
+      <div class="countdown-grid">
+        <div class="countdown-item">
+          <span class="countdown-value" id="month-days">00</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-value" id="month-hours">00</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-value" id="month-minutes">00</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-value" id="month-seconds">00</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+      
+      <div class="grad-date">
+        <svg class="calendar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <span>June 6, 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 6: Monthsary Passcode -->
+  <div id="monthsary-passcode-phase" class="screen hidden">
+    <div class="content-wrapper">
+      <div class="lock-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <h1 class="title">Unlock Our Memories</h1>
+      <p class="subtitle">Enter the passcode to continue</p>
+      
+      <div class="passcode-form">
+        <input 
+          type="text" 
+          id="monthsary-passcode-input" 
+          class="passcode-input" 
+          placeholder="Enter 6-digit code"
+          maxlength="6"
+          inputmode="numeric"
+        >
+        <p class="hint">Hint: When did our love story begin? (MMDDYY)</p>
+        <p class="error-message hidden" id="monthsary-error-message">
+          That's not it, my love...
+          <br>
+          <span class="hint-text">Think back to when we started this beautiful journey.</span>
+        </p>
+        <button id="monthsary-unlock-btn" class="unlock-btn">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 9.9-1"/>
+          </svg>
+          Unlock
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 7: Monthsary Quiz -->
+  <div id="monthsary-quiz-phase" class="screen hidden">
+    <div class="content-wrapper">
+      <div class="quiz-container">
+        <div class="quiz-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
+        <h1 class="title">One More Thing...</h1>
+        <p class="subtitle quiz-question">What monthsary are we celebrating on June 6?</p>
+        
+        <div class="quiz-input-wrapper">
+          <input 
+            type="text" 
+            id="quiz-input" 
+            class="quiz-input" 
+            placeholder="?"
+            maxlength="2"
+            inputmode="numeric"
+          >
+          <span class="quiz-suffix">months</span>
+        </div>
+        
+        <p class="error-message hidden" id="quiz-error-message">
+          Not quite right, love!
+        </p>
+        
+        <button id="quiz-submit-btn" class="unlock-btn">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 8: Photo Slideshow -->
+  <div id="slideshow-phase" class="screen hidden">
+    <div class="slideshow-container">
+      <div class="slideshow-header">
+        <h1 class="slideshow-title">Our Beautiful Memories</h1>
+        <p class="slideshow-subtitle">8 Months of Love</p>
+        <button id="music-toggle" class="music-toggle" aria-label="Toggle music">
+          <svg id="music-on-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+          </svg>
+          <svg id="music-off-icon" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+            <line x1="1" y1="1" x2="23" y2="23" stroke-width="2"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="photo-grid">
+        <!-- Card 1 -->
+        <div class="photo-card" data-index="0">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="/images/img1.png" alt="Memory 1" class="card-photo">
+            </div>
+            <div class="card-back">
+              <p class="card-message">The day we first met, my heart knew it found its home.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="photo-card" data-index="1">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="/images/img2.png" alt="Memory 2" class="card-photo">
+            </div>
+            <div class="card-back">
+              <p class="card-message">Your smile is my favorite thing in the entire world.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="photo-card" data-index="2">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="/images/img3.png" alt="Memory 3" class="card-photo">
+            </div>
+            <div class="card-back">
+              <p class="card-message">Every moment with you is a memory I treasure forever.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 4 -->
+        <div class="photo-card" data-index="3">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="/images/img4.jpg" alt="Memory 4" class="card-photo">
+            </div>
+            <div class="card-back">
+              <p class="card-message">You make the ordinary extraordinary just by being you.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 5 -->
+        <div class="photo-card" data-index="4">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="/images/img5.jpg" alt="Memory 5" class="card-photo">
+            </div>
+            <div class="card-back">
+              <p class="card-message">I fall more in love with you every single day.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 6 -->
+        <div class="photo-card" data-index="5">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="/images/img6.jpg" alt="Memory 6" class="card-photo">
+            </div>
+            <div class="card-back">
+              <p class="card-message">Thank you for being my best friend and my greatest love.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 7 -->
+        <div class="photo-card" data-index="6">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="/images/img7.jpg" alt="Memory 7" class="card-photo">
+            </div>
+            <div class="card-back">
+              <p class="card-message">You are my today and all of my tomorrows.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 8 -->
+        <div class="photo-card" data-index="7">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="/images/img8.jpg" alt="Memory 8" class="card-photo">
+            </div>
+            <div class="card-back">
+              <p class="card-message">Happy 8th monthsary, my love. Here's to forever!</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 9 -->
+        <div class="photo-card" data-index="8">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="/images/img9.jpg" alt="Memory 9" class="card-photo">
+            </div>
+            <div class="card-back">
+              <p class="card-message">With you, I have found my forever person.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Card 10 -->
+        <div class="photo-card" data-index="9">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="/images/img10.jpg" alt="Memory 10" class="card-photo">
+            </div>
+            <div class="card-back">
+              <p class="card-message">I love you more than words could ever express. Always and forever.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <p class="slideshow-hint">Tap each card to reveal a special message</p>
+    </div>
+    
+    <audio id="romantic-music" loop>
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+  </div> 
+  <script src="script.js"></script>
+</body>
+</html>
